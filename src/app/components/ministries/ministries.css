@@ -1,0 +1,311 @@
+.ministries-page {
+  background-color: #0f0f1a;
+}
+
+/* Hero Section */
+.ministries-hero {
+  position: relative;
+  height: 50vh;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  overflow: hidden;
+}
+
+.ministries-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(68, 109, 222, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(107, 140, 255, 0.1) 0%, transparent 50%);
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23446dde' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  padding: 0 24px;
+}
+
+.hero-content .section-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #446dde, #6b8cff);
+  color: #ffffff;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero-content h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 16px;
+  font-family: 'Georgia', serif;
+}
+
+.hero-content p {
+  font-size: 1.15rem;
+  color: #a0a0c0;
+  line-height: 1.7;
+}
+
+/* Intro Section */
+.ministries-intro {
+  text-align: center;
+  max-width: 750px;
+  margin: 80px auto 60px;
+  padding: 0 24px;
+}
+
+.ministries-intro h2 {
+  font-size: 2.2rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-family: 'Georgia', serif;
+}
+
+.ministries-intro p {
+  font-size: 1.05rem;
+  color: #a0a0c0;
+  line-height: 1.8;
+}
+
+/* Ministries Grid */
+.ministries-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto 100px;
+  padding: 0 24px;
+}
+
+.ministry-card {
+  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  border: 1px solid rgba(68, 109, 222, 0.12);
+  border-radius: 20px;
+  padding: 36px 32px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ministry-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(68, 109, 222, 0.4);
+  box-shadow: 0 16px 48px rgba(68, 109, 222, 0.12);
+}
+
+.card-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, rgba(68, 109, 222, 0.2), rgba(107, 140, 255, 0.1));
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #6b8cff;
+  transition: background 0.3s ease;
+}
+
+.ministry-card:hover .card-icon {
+  background: linear-gradient(135deg, rgba(68, 109, 222, 0.35), rgba(107, 140, 255, 0.2));
+}
+
+.ministry-card h3 {
+  font-size: 1.35rem;
+  color: #ffffff;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.ministry-description {
+  color: #a0a0c0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.ministry-verse {
+  background: rgba(68, 109, 222, 0.08);
+  border-left: 3px solid #446dde;
+  padding: 14px 18px;
+  border-radius: 0 10px 10px 0;
+  margin-bottom: 20px;
+}
+
+.verse-text {
+  font-style: italic;
+  color: #c0c0e0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+.verse-ref {
+  display: block;
+  font-size: 0.8rem;
+  color: #6b8cff;
+  font-weight: 600;
+}
+
+.ministry-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #8888aa;
+  font-size: 0.88rem;
+}
+
+.detail svg {
+  color: #6b8cff;
+  flex-shrink: 0;
+}
+
+/* CTA Section */
+.ministries-cta {
+  background: linear-gradient(145deg, #446dde, #3a5bc7);
+  border-radius: 20px;
+  padding: 70px 40px;
+  max-width: 900px;
+  margin: 0 auto 100px;
+  text-align: center;
+}
+
+.cta-content h2 {
+  font-size: 2.2rem;
+  color: #ffffff;
+  margin-bottom: 16px;
+  font-family: 'Georgia', serif;
+}
+
+.cta-content p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.05rem;
+  margin-bottom: 32px;
+  line-height: 1.7;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: #ffffff;
+  color: #446dde;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .ministries-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .ministries-hero {
+    height: 40vh;
+    min-height: 280px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .ministries-intro h2 {
+    font-size: 1.8rem;
+  }
+
+  .ministry-card {
+    padding: 28px 24px;
+  }
+
+  .ministries-cta {
+    padding: 50px 24px;
+    margin: 0 16px 80px;
+  }
+
+  .cta-content h2 {
+    font-size: 1.7rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}

@@ -1,0 +1,170 @@
+<section class="donations-page">
+  <div class="donations-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="section-tag">Generosity</span>
+      <h1>Give Today</h1>
+      <p>Your generous giving fuels the mission of Gospel Church Union and transforms lives in our community and beyond.</p>
+    </div>
+  </div>
+
+  <div class="donations-container">
+    @if (formSubmitted()) {
+      <div class="success-message">
+        <div class="success-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h2>Thank You for Your Generosity!</h2>
+        <p>Your {{ donationType() === 'recurring' ? 'recurring' : 'one-time' }} gift of <strong>{{ getCurrencySymbol() }}{{ getFinalAmount() }}</strong> to the {{ funds.find(f => f.id === selectedFund())?.label }} will make a real difference.</p>
+        <p class="success-note">A confirmation email has been sent to your inbox.</p>
+        <button class="btn btn-primary" (click)="resetForm()">Make Another Donation</button>
+      </div>
+    } @else {
+      <div class="donations-layout">
+        <div class="donation-form-section">
+          <div class="form-card">
+            <h2>Choose Your Gift</h2>
+
+            <div class="donation-type-toggle">
+              <button
+                class="type-btn"
+                [class.active]="donationType() === 'one-time'"
+                (click)="setDonationType('one-time')"
+              >One-Time</button>
+              <button
+                class="type-btn"
+                [class.active]="donationType() === 'recurring'"
+                (click)="setDonationType('recurring')"
+              >Monthly</button>
+            </div>
+
+            <div class="amount-section">
+              <label class="form-label">Select Currency</label>
+              <div class="custom-dropdown" (mouseleave)="closeCurrencyDropdown()">
+                <div class="dropdown-trigger" (click)="toggleCurrencyDropdown()">
+                  <span class="dropdown-selected">
+                    <span class="dropdown-symbol">{{ getSelectedCurrency().symbol }}</span>
+                    <span class="dropdown-label">{{ getSelectedCurrency().label }}</span>
+                  </span>
+                  <span class="dropdown-chevron" [class.open]="currencyDropdownOpen()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </span>
+                </div>
+                @if (currencyDropdownOpen()) {
+                  <ul class="dropdown-list">
+                    @for (currency of currencies; track currency.code) {
+                      <li
+                        class="dropdown-item"
+                        [class.active]="selectedCurrency() === currency.code"
+                        (click)="setCurrency(currency.code)"
+                      >
+                        <span class="item-symbol">{{ currency.symbol }}</span>
+                        <span class="item-details">
+                          <span class="item-label">{{ currency.label }}</span>
+                          <span class="item-code">{{ currency.code }}</span>
+                        </span>
+                        @if (selectedCurrency() === currency.code) {
+                          <svg class="item-check" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        }
+                      </li>
+                    }
+                  </ul>
+                }
+              </div>
+
+              <label class="form-label">Select Amount</label>
+              <div class="amount-grid">
+                @for (amount of presetAmounts; track amount) {
+                  <button
+                    class="amount-btn"
+                    [class.active]="selectedAmount() === amount"
+                    (click)="selectAmount(amount)"
+                  >{{ getCurrencySymbol() }}{{ amount }}</button>
+                }
+              </div>
+              <div class="custom-amount-wrapper">
+                <span class="currency-symbol" [style.width]="getCurrencySymbol().length > 1 ? '40px' : '20px'">{{ getCurrencySymbol() }}</span>
+                <input
+                  type="number"
+                  class="custom-input"
+                  [style.padding-left]="getCurrencySymbol().length > 1 ? '52px' : '36px'"
+                  placeholder="Enter amount"
+                  [value]="customAmount()"
+                  (input)="onCustomAmountChange($any($event.target).value)"
+                  min="1"
+                />
+              </div>
+            </div>
+
+            <div class="fund-section">
+              <label class="form-label">Designate Your Gift</label>
+              <div class="fund-options">
+                @for (fund of funds; track fund.id) {
+                  <div
+                    class="fund-option"
+                    [class.active]="selectedFund() === fund.id"
+                    (click)="setFund(fund.id)"
+                  >
+                    <div class="fund-radio">
+                      <div class="radio-dot"></div>
+                    </div>
+                    <div class="fund-info">
+                      <span class="fund-name">{{ fund.label }}</span>
+                      <span class="fund-desc">{{ fund.description }}</span>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <button
+              class="donate-btn"
+              [disabled]="getFinalAmount() <= 0"
+              (click)="submitDonation()"
+            >
+              Give {{ getCurrencySymbol() }}{{ getFinalAmount() || 0 }}{{ donationType() === 'recurring' ? '/month' : '' }}
+            </button>
+
+            <div class="secure-note">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span>Secure, encrypted transaction</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="donation-sidebar">
+          <div class="impact-card">
+            <h3>Your Impact</h3>
+            <p class="impact-intro">Every gift makes a difference. Here's what your generosity can do:</p>
+            <div class="impact-list">
+              @for (item of impactStats; track item.amount) {
+                <div class="impact-item">
+                  <span class="impact-amount">{{ item.amount }}</span>
+                  <span class="impact-text">{{ item.impact }}</span>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="scripture-card">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 1 4 17V4a2 2 0 0 1 2-2h14v14H6.5A2.5 2.5 0 0 0 4 18.5z"></path>
+            </svg>
+            <p class="scripture-text">"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."</p>
+            <span class="scripture-ref">2 Corinthians 9:7</span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

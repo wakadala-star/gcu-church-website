@@ -1,0 +1,138 @@
+<section class="active-churches-page">
+  <div class="ac-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="section-tag">Across Uganda</span>
+      <h1>Active Churches</h1>
+      <p>Gospel Church Union has established vibrant communities of faith across all regions of Uganda. Find a church near you.</p>
+    </div>
+  </div>
+
+  <div class="ac-container">
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-number">{{ getTotalChurches() }}</span>
+        <span class="stat-label">Active Churches</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{{ getTotalMembers() }}+</span>
+        <span class="stat-label">Total Members</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Regions</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">12</span>
+        <span class="stat-label">Districts</span>
+      </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="map-section">
+      <h2>Church Locations Across Uganda</h2>
+      <p class="map-subtitle">Click on a marker to learn more about each church</p>
+
+      <div class="map-wrapper">
+        <div class="map-container">
+          <!-- Uganda SVG Map -->
+          <img src="assets/churches/uganda-districts.svg" alt="Map of Uganda showing church locations" class="uganda-map-img" />
+
+          <!-- Overlaid Markers -->
+          @for (marker of mapMarkers; track marker.name) {
+            <div
+              class="map-pin"
+              [style.left.%]="marker.x"
+              [style.top.%]="marker.y"
+            >
+              <div class="pin-pulse" [style.background]="getMarkerColor(marker.region)"></div>
+              <div class="pin-dot" [style.background]="getMarkerColor(marker.region)"></div>
+              <span class="pin-label" [style.color]="getMarkerColor(marker.region)">{{ marker.name }}</span>
+            </div>
+          }
+        </div>
+
+        <!-- Map Legend -->
+        <div class="map-legend">
+          @for (region of regions; track region.name) {
+            <div class="legend-item">
+              <span class="legend-dot" [style.background]="region.color"></span>
+              <span>{{ region.name }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Churches by Region -->
+    <div class="regions-section">
+      @for (region of regions; track region.name) {
+        <div class="region-block">
+          <div class="region-header">
+            <span class="region-color" [style.background]="region.color"></span>
+            <h2>{{ region.name }}</h2>
+            <span class="church-count">{{ region.churches.length }} Churches</span>
+          </div>
+
+          <div class="churches-grid">
+            @for (church of region.churches; track church.name) {
+              <div class="church-card">
+                <div class="church-icon" [style.background]="region.color + '20'" [style.color]="region.color">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div class="church-info">
+                  <h3>{{ church.name }}</h3>
+                  <p class="church-location">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    {{ church.location }}
+                  </p>
+                  <p class="church-pastor">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    {{ church.pastor }}
+                  </p>
+                  <div class="church-meta">
+                    <span class="meta-item">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                      </svg>
+                      {{ church.members }} Members
+                    </span>
+                    <span class="meta-item">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                      </svg>
+                      Est. {{ church.founded }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- CTA -->
+    <div class="ac-cta">
+      <h2>Join a Church Near You</h2>
+      <p>Wherever you are in Uganda, there's a Gospel Church Union community ready to welcome you.</p>
+      <a routerLink="/contact" class="cta-btn">Contact Us to Learn More</a>
+    </div>
+  </div>
+</section>

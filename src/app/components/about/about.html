@@ -1,0 +1,146 @@
+<section class="about" id="about">
+  <div class="about-header">
+    <span class="section-tag">Who We Are</span>
+    <h2 class="section-title">Gospel Church Union</h2>
+    <p class="section-subtitle">
+      A family of believers united by faith, driven by love, and committed to sharing the Gospel with the world.
+    </p>
+  </div>
+
+  <div class="about-intro">
+    <div class="intro-image">
+      <img src="assets/about/community.jpg" alt="GCU Community" />
+      <div class="intro-badge">
+        <span class="badge-number">25</span>
+        <span class="badge-text">Years of Faith</span>
+      </div>
+    </div>
+    <div class="intro-text">
+      <h3>Our Story</h3>
+      <p>
+        Gospel Church Union was born out of a desire to create a Christ-centered community where
+        people from all walks of life can encounter God's love, grow in faith, and find purpose.
+        What started as a small gathering of 30 believers has grown into a vibrant family of
+        hundreds, spanning multiple nations and generations.
+      </p>
+      <p>
+        We believe that the Church is not a building — it's a living, breathing community of
+        people who are passionate about following Jesus and making a difference in the world
+        around them.
+      </p>
+    </div>
+  </div>
+
+  <div class="mission-vision">
+    <div class="mv-card" [class.flipped]="isFlipped(0)" (click)="toggleFlip(0)">
+      <div class="mv-inner">
+        <div class="mv-front">
+          <div class="mv-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+          </div>
+          <h3>Our Mission</h3>
+          <p>To glorify God by making disciples, building community, and transforming lives through the power of the Gospel.</p>
+          <span class="flip-hint">Click to reveal more</span>
+        </div>
+        <div class="mv-back">
+          <h3>Mission Focus</h3>
+          <ul>
+            <li>Evangelism & Church Planting</li>
+            <li>Discipleship & Leadership Training</li>
+            <li>Community Development</li>
+            <li>Youth & Family Empowerment</li>
+            <li>Global Missions Partnerships</li>
+          </ul>
+          <span class="flip-hint">Click to flip back</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mv-card" [class.flipped]="isFlipped(1)" (click)="toggleFlip(1)">
+      <div class="mv-inner">
+        <div class="mv-front">
+          <div class="mv-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <h3>Our Vision</h3>
+          <p>To be a beacon of hope and light in every community — a church where lives are changed, families are restored, and God's Kingdom is advanced.</p>
+          <span class="flip-hint">Click to reveal more</span>
+        </div>
+        <div class="mv-back">
+          <h3>Vision Pillars</h3>
+          <ul>
+            <li>A Church for Every Generation</li>
+            <li>Faith that Impacts Culture</li>
+            <li>Unity in Diversity</li>
+            <li>Excellence in Ministry</li>
+            <li>Sustainable Community Transformation</li>
+          </ul>
+          <span class="flip-hint">Click to flip back</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="values-section">
+    <h3 class="subsection-title">Core Values</h3>
+    <div class="values-grid">
+      @for (value of coreValues; track value.title; let i = $index) {
+        <div class="value-card">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path [attr.d]="getIcon(value.icon)"></path>
+            </svg>
+          </div>
+          <h4>{{ value.title }}</h4>
+          <p>{{ value.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="stats-section">
+    <div class="stats-grid">
+      @for (stat of demographics; track stat.key) {
+        <div class="stat-card">
+          <span class="stat-number">{{ animatedValues()[stat.key] }}{{ stat.suffix }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="timeline-section">
+    <h3 class="subsection-title">Our Journey</h3>
+    <div class="timeline">
+      @for (item of timeline; track item.year; let i = $index; let odd = $odd) {
+        <div class="timeline-item" [class.right]="odd">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">{{ item.year }}</span>
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.description }}</p>
+          </div>
+        </div>
+      }
+      <div class="timeline-line"></div>
+    </div>
+  </div>
+
+  <div class="about-cta">
+    <div class="cta-content">
+      <h3>Join Our Family</h3>
+      <p>Whether you've been walking with God for years or are just beginning your journey, there's a place for you at GCU.</p>
+      <div class="cta-buttons">
+        <a routerLink="/ministries" class="btn btn-primary">Explore Ministries</a>
+        <a routerLink="/sermons" class="btn btn-secondary">Watch Sermons</a>
+      </div>
+    </div>
+  </div>
+</section>

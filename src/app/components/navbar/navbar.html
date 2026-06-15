@@ -1,0 +1,33 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <a routerLink="/" class="navbar-logo">
+      <img src="assets/logo/svg_logo.png" alt="Gospel Church Union Logo" class="logo-img" />
+      <span class="logo-text">Gospel Church Union</span>
+    </a>
+
+    <button class="mobile-toggle" (click)="toggleMobileMenu()">
+      <span class="hamburger"></span>
+    </button>
+
+    <ul class="navbar-links" [class.active]="mobileMenuOpen()">
+      <li><a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+      <li><a href="#about" routerLinkActive="active-link" (click)="scrollToAbout($event)">About</a></li>
+      <li><a routerLink="/sermons" routerLinkActive="active-link">Sermons</a></li>
+      <li class="dropdown" (click)="toggleDropdown()" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
+        <a class="dropdown-toggle">
+          More
+          <svg class="dropdown-icon" [class.rotated]="dropdownOpen()" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </a>
+        <ul class="dropdown-menu" [class.show]="dropdownOpen()">
+          <li><a routerLink="/ministries" routerLinkActive="active-link">Ministries</a></li>
+          <li><a routerLink="/active-churches" routerLinkActive="active-link">Active Churches</a></li>
+          <li><a routerLink="/events" routerLinkActive="active-link">Events</a></li>
+          <li><a routerLink="/donations" routerLinkActive="active-link">Donations</a></li>
+          <li><a routerLink="/contact" routerLinkActive="active-link">Contact Us</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" fill="none">
+  <defs>
+    <linearGradient id="water" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a3a5c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f2840;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="land" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e5631;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2a6e3f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e5631;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="500" fill="#0a1628"/>
+
+  <!-- Uganda outline - detailed geographic shape -->
+  <path id="uganda" d="
+    M295,18
+    L310,15 L325,12 L340,14 L355,10 L370,12 L385,16 L398,14
+    L410,18 L425,22 L438,28 L450,35 L462,42 L472,52 L480,62
+    L488,75 L495,88 L500,102 L505,118 L510,135 L515,152
+    L518,168 L520,185 L522,200 L525,218 L528,235 L530,252
+    L532,268 L535,285 L538,302 L540,318 L542,335 L545,352
+    L548,368 L550,385 L552,402 L555,418 L558,435 L560,450
+    L555,460 L548,468 L540,472 L530,475 L520,478 L508,480
+    L495,482 L480,484 L465,485 L450,486 L435,488 L420,490
+    L405,492 L390,494 L375,495 L360,496 L345,497 L330,498
+    L315,499 L300,500 L285,499 L270,498 L255,497 L240,496
+    L225,494 L210,492 L195,490 L180,488 L165,486 L150,484
+    L135,482 L120,480 L108,478 L98,475 L90,472 L82,468
+    L75,460 L72,450 L70,435 L68,418 L66,402 L64,385
+    L62,368 L60,352 L58,335 L56,318 L54,302 L52,285
+    L50,268 L48,252 L46,235 L44,218 L42,200 L40,185
+    L38,168 L36,152 L35,135 L36,118 L38,102 L42,88
+    L48,75 L56,62 L66,52 L78,42 L92,35 L108,28
+    L125,22 L142,18 L160,16 L178,14 L195,12 L212,10
+    L230,12 L248,14 L265,16 L280,18 Z
+  " fill="url(#land)" filter="url(#shadow)" stroke="#3a8a5c" stroke-width="2"/>
+
+  <!-- Lake Victoria (bottom right) -->
+  <path d="
+    M380,420 L400,415 L420,418 L440,425 L455,435 L465,448
+    L470,462 L468,475 L460,485 L448,490 L435,492 L420,494
+    L405,495 L390,496 L378,498 L370,492 L365,480 L362,465
+    L360,450 L362,435 L368,425 Z
+  " fill="url(#water)" opacity="0.9"/>
+
+  <!-- Lake Albert (west) -->
+  <path d="
+    M68,200 L75,195 L82,198 L88,205 L92,215 L95,228
+    L98,242 L100,255 L98,268 L92,278 L85,282 L78,280
+    L72,272 L68,260 L65,245 L63,230 L62,215 L65,205 Z
+  " fill="url(#water)" opacity="0.9"/>
+
+  <!-- Lake Kyoga (center) -->
+  <path d="
+    M300,250 L320,245 L340,248 L355,255 L365,265 L370,278
+    L368,290 L360,300 L348,305 L335,308 L320,310 L305,308
+    L292,302 L282,292 L278,278 L280,265 L288,255 Z
+  " fill="url(#water)" opacity="0.85"/>
+
+  <!-- Lake George -->
+  <path d="
+    M140,340 L155,335 L168,338 L178,345 L182,355 L180,365
+    L172,372 L160,375 L148,372 L140,365 L136,355 L136,345 Z
+  " fill="url(#water)" opacity="0.85"/>
+
+  <!-- Lake Edward -->
+  <path d="
+    M105,370 L120,365 L135,368 L145,375 L150,385 L148,395
+    L140,402 L128,405 L115,402 L105,395 L100,385 L100,375 Z
+  " fill="url(#water)" opacity="0.85"/>
+
+  <!-- Region Labels -->
+  <text x="310" y="180" fill="#ffffff" font-family="Georgia, serif" font-size="16" font-weight="700" text-anchor="middle" opacity="0.8" letter-spacing="3">NORTHERN</text>
+  <text x="420" y="290" fill="#ffffff" font-family="Georgia, serif" font-size="16" font-weight="700" text-anchor="middle" opacity="0.8" letter-spacing="3">EASTERN</text>
+  <text x="140" y="320" fill="#ffffff" font-family="Georgia, serif" font-size="16" font-weight="700" text-anchor="middle" opacity="0.8" letter-spacing="3">WESTERN</text>
+  <text x="340" y="340" fill="#ffffff" font-family="Georgia, serif" font-size="16" font-weight="700" text-anchor="middle" opacity="0.8" letter-spacing="3">CENTRAL</text>
+
+  <!-- Country Name -->
+  <text x="300" y="480" fill="#ffffff" font-family="Georgia, serif" font-size="22" font-weight="700" text-anchor="middle" opacity="0.6" letter-spacing="8">UGANDA</text>
+</svg>

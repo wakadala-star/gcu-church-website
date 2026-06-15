@@ -1,0 +1,54 @@
+<section class="hero">
+  <div class="slider">
+    @for (slide of slides; track slide.image; let i = $index) {
+      <div
+        class="slide"
+        [class.active]="currentSlide() === i"
+        [style.background-image]="'url(' + slide.image + ')'"
+      >
+        <div class="overlay"></div>
+        <div class="slide-content">
+          <p class="quote">{{ slide.quote }}</p>
+          <span class="reference">{{ slide.reference }}</span>
+        </div>
+      </div>
+    }
+
+    <button class="nav-btn prev" (click)="prevSlide()" aria-label="Previous slide">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button class="nav-btn next" (click)="nextSlide()" aria-label="Next slide">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <div class="dots">
+      @for (slide of slides; track slide.image; let i = $index) {
+        <button
+          class="dot"
+          [class.active]="currentSlide() === i"
+          (click)="goToSlide(i)"
+          [attr.aria-label]="'Go to slide ' + (i + 1)"
+        ></button>
+      }
+    </div>
+
+    <button class="play-pause-btn" (click)="toggleAutoPlay()" [attr.aria-label]="isAutoPlaying() ? 'Pause slideshow' : 'Play slideshow'">
+      @if (isAutoPlaying()) {
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <rect x="6" y="4" width="4" height="16"></rect>
+          <rect x="14" y="4" width="4" height="16"></rect>
+        </svg>
+      } @else {
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+      }
+    </button>
+  </div>
+</section>
+
+<app-about></app-about>
